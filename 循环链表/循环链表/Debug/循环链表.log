@@ -1,0 +1,3 @@
+﻿  test.c
+D:\code-2021\数据结构学习\循环链表\循环链表\test.c(83,12): warning C4101: “L”: 未引用的局部变量
+  循环链表.vcxproj -> D:\code-2021\数据结构学习\循环链表\Debug\循环链表.exe
