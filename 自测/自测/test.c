@@ -1,7 +1,7 @@
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include<stdio.h>
-//#include<stdlib.h>
-//#include<stdbool.h>
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
 //
 ////#define InitSize 10
 ////#define MaxSize 10
@@ -536,3 +536,53 @@
 //	int front, rear;
 //	int tag;//tag=0代表上一次操作是删除，tag=1代表上一次操作是删除，用来判空判满
 //}SqQueue;
+//顺序表的定义
+#define MaxSize 50
+typedef struct
+{
+	int data[MaxSize];
+	int length;
+}SqList;
+void InitList(SqList* L)
+{
+	L->length = 0;
+}
+bool GetElem(SqList L,int i , int* e)
+{
+	if (i < 1 || i > L.length)
+		return false;
+	*e = L.data[i - 1];
+	return true;
+}
+int LocateElem(SqList L, int e)
+{
+	int i = 0;
+	for (i = 0; i < L.length; i++) {
+		if (L.data[i] == e)
+			return L.data[i];
+	}
+	return 0;
+}
+bool ListInsert(SqList* L, int i, int e)
+{
+	if (i<1 || i>L->length+1||L->length>=MaxSize)
+		return false;
+	int j = 0;
+	for (j = L->length; j >= i; j--) 
+		L->data[j] = L->data[j - 1];
+	L->data[i - 1] = e;
+	L->length++;
+	return true;
+}
+bool ListDelete(SqList* L,int i, int* x)
+{
+	if (i<1 || i>L->length || L->length == 0)
+		return false;
+	*x = L->data[i - 1];
+	int j = i;
+	for (j = i; j < L->length; j++) {
+		L->data[j-1] = L->data[j];
+	}
+	L->length--;
+	return true;
+}
