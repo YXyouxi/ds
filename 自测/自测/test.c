@@ -537,52 +537,263 @@
 //	int tag;//tag=0代表上一次操作是删除，tag=1代表上一次操作是删除，用来判空判满
 //}SqQueue;
 //顺序表的定义
-#define MaxSize 50
-typedef struct
-{
-	int data[MaxSize];
-	int length;
-}SqList;
-void InitList(SqList* L)
-{
-	L->length = 0;
-}
-bool GetElem(SqList L,int i , int* e)
-{
-	if (i < 1 || i > L.length)
-		return false;
-	*e = L.data[i - 1];
-	return true;
-}
-int LocateElem(SqList L, int e)
-{
-	int i = 0;
-	for (i = 0; i < L.length; i++) {
-		if (L.data[i] == e)
-			return L.data[i];
-	}
-	return 0;
-}
-bool ListInsert(SqList* L, int i, int e)
-{
-	if (i<1 || i>L->length+1||L->length>=MaxSize)
-		return false;
-	int j = 0;
-	for (j = L->length; j >= i; j--) 
-		L->data[j] = L->data[j - 1];
-	L->data[i - 1] = e;
-	L->length++;
-	return true;
-}
-bool ListDelete(SqList* L,int i, int* x)
-{
-	if (i<1 || i>L->length || L->length == 0)
-		return false;
-	*x = L->data[i - 1];
-	int j = i;
-	for (j = i; j < L->length; j++) {
-		L->data[j-1] = L->data[j];
-	}
-	L->length--;
-	return true;
-}
+//#define MaxSize 50
+//typedef struct
+//{
+//	int data[MaxSize];
+//	int length;
+//}SqList;
+//void InitList(SqList* L)
+//{
+//	L->length = 0;
+//}
+//bool GetElem(SqList L,int i , int* e)
+//{
+//	if (i < 1 || i > L.length)
+//		return false;
+//	*e = L.data[i - 1];
+//	return true;
+//}
+//int LocateElem(SqList L, int e)
+//{
+//	int i = 0;
+//	for (i = 0; i < L.length; i++) {
+//		if (L.data[i] == e)
+//			return L.data[i];
+//	}
+//	return 0;
+//}
+//bool ListInsert(SqList* L, int i, int e)
+//{
+//	if (i<1 || i>L->length+1||L->length>=MaxSize)
+//		return false;
+//	int j = 0;
+//	for (j = L->length; j >= i; j--) 
+//		L->data[j] = L->data[j - 1];
+//	L->data[i - 1] = e;
+//	L->length++;
+//	return true;
+//}
+//bool ListDelete(SqList* L,int i, int* x)
+//{
+//	if (i<1 || i>L->length || L->length == 0)
+//		return false;
+//	*x = L->data[i - 1];
+//	int j = i;
+//	for (j = i; j < L->length; j++) {
+//		L->data[j-1] = L->data[j];
+//	}
+//	L->length--;
+//	return true;
+//}
+//#define MaxSize 10
+//typedef struct
+//{
+//	int data[MaxSize];//静态数组
+//	int top;//栈顶指针
+//}SqStack;
+//void InitStack(SqStack* S)
+//{
+//	(S)->top = -1;
+//}
+//bool StackEmpty(SqStack S)
+//{
+//	if (S.top == -1) {
+//		return true;
+//	}
+//	else
+//	{
+//		return false;
+//	}
+//}
+//bool Push(SqStack* S, int x)
+//{
+//	if (S->top == MaxSize - 1) {
+//		return false;
+//	}
+//	S->data[++S->top] = x;
+//	return true;
+//}
+//bool Pop(SqStack* S, int* x)
+//{
+//	if (StackEmpty(*S)) {
+//		return false;
+//	}
+//	*x = S->data[S->top];
+//	S->top--;
+//	return true;
+//}
+//int main()
+//{
+//	SqStack S;
+//
+//	return 0;
+//}
+//typedef struct LinkNode
+//{
+//	int data;
+//	struct LinkNode* next;
+//}*LiStack;
+//int main()
+//{
+//	LiStack L;
+//	return 0;
+//}
+//#define MaxSize 10
+//typedef struct
+//{
+//	int data[MaxSize];
+//	int front, rear;
+//}SqQueue;
+//void InitQueue(SqQueue* Q)
+//{
+//	Q->front = Q->rear = 0;
+//}
+//bool EnQueue(SqQueue* Q, int x)
+//{
+//	if ((Q->rear + 1) % MaxSize == Q->front) {
+//		return false;
+//	}
+//	Q->data[Q->rear] = x;
+//	Q->rear = (Q->rear + 1) % MaxSize;
+//	return true;
+//}
+//bool DeQueue(SqQueue* Q, int* x)
+//{
+//	if (Q->rear == Q->front) {
+//		return false;
+//	}
+//	*x = Q->data[Q->front];
+//	Q->front = (Q->front + 1) % MaxSize;
+//	return true;
+//}
+//int main()
+//{
+//	SqQueue Q;
+//	return 0;
+//}
+//typedef struct LinkNode
+//{
+//	int data;
+//	struct LinkNode* next;
+//}LinkNode;
+//typedef struct
+//{
+//	LinkNode* front, * rear;
+//}LinkQueue;
+//void InitQueue(LinkQueue* Q)
+//{
+//	Q->front = Q->rear = (LinkNode*)malloc(sizeof(LinkNode));
+//	Q->front->next = NULL;
+//}
+//bool EnQueue(LinkQueue* Q, int x)
+//{
+//	LinkNode* P;
+//	P = (LinkNode*)malloc(sizeof(LinkNode));
+//	if (P == NULL) {
+//		return false;
+//	}
+//	P->data = x;
+//	P->next = NULL;
+//	Q->rear->next = P;
+//	Q->rear = P;
+//	return true;
+//}
+//bool DeQueue(LinkQueue* Q, int* x)
+//{
+//	if (Q->front == Q->rear) {
+//		return false;
+//	}
+//	LinkNode* P = Q->front->next;
+//	*x = P->data;
+//	Q->front->next = P->next;
+//	if (Q->rear == P) {
+//		Q->rear = Q->front;
+//	}
+//	free(P);
+//	return true;
+//}
+//int main()
+//{
+//	LinkQueue Q;
+//	return 0;
+//}
+//#define MaxSize 50
+//typedef struct
+//{
+//	char data[MaxSize];
+//	int top;
+//}SqStack;
+//void InitStack(SqStack* Q)
+//{
+//	Q->top = -1;
+//}
+//bool StackEmpty(SqStack S)
+//{
+//	if (S.top == -1) {
+//		return true;
+//	}
+//	else {
+//		return false;
+//	}
+//}
+//bool Push(SqStack* Q, char x)
+//{
+//	if (Q->top == MaxSize - 1) {
+//		return false;
+//	}
+//	Q->data[++Q->top] = x;
+//	return true;
+//}
+//bool Pop(SqStack* S, char* x)
+//{
+//	if (StackEmpty(*S)) {
+//		return false;
+//	}
+//	*x = S->data[S->top--];
+//	return true;
+//}
+//
+//bool BracketCheck(char str[], int length)
+//{
+//	SqStack S;
+//	InitStack(&S);
+//	for (int i = 0; i < length; i++) {
+//		if (str[i] == '(' || str[i] == '[' || str[i] == '{') {
+//			Push(&S, str[i]);
+//		}
+//		else {
+//			if (StackEmpty(S)) {
+//				return false;
+//			}
+//			char topElem;
+//			Pop(&S, &topElem);
+//			if (str[i] == ')' && topElem != '(') {
+//				return false;
+//			}
+//			if (str[i] == ']' && topElem != '[') {
+//				return false;
+//			}
+//			if (str[i] == '}' && topElem != '{') {
+//				return false;
+//			}
+//		}
+//	}
+//	if (StackEmpty(S)) {
+//		return true;
+//	}
+//	else {
+//		return false;
+//	}
+//}
+//int main()
+//{
+//	char str[10] = "(())[]{}";
+//	if (BracketCheck(str, 8)) {
+//		printf("1");
+//	}
+//	else {
+//		printf("0");
+//	}
+//	return 0;
+//}
