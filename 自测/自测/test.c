@@ -797,3 +797,58 @@
 //	}
 //	return 0;
 //}
+//typedef struct LinkNode
+//{
+//	int data;
+//	struct LinkNode* next;
+//}*LiStack;
+//void InitStack(LiStack* S)
+//{
+//	(*S) = (LiStack)malloc(sizeof(struct LinkNode));
+//	(*S)->next = NULL;
+//}
+//bool StackEmpty(LiStack S)
+//{
+//	if (S->next == NULL) {
+//		return true;
+//	}
+//	else {
+//		return false;
+//	}
+//}
+//bool Push(LiStack* S, int x)
+//{
+//	LiStack P = (LiStack)malloc(sizeof(struct LinkNode));
+//	if (P == NULL) {
+//		return false;
+//	}
+//	P->data = x;
+//	P->next = (*S)->next;
+//	(*S)->next = P;
+//	return true;
+//}
+//bool Pop(LiStack* S, int* x)
+//{
+//	if ((*S)->next == NULL) {
+//		return false;
+//	}
+//	LiStack P = (*S)->next;
+//	*x = P->data;
+//	(*S)->next = P->next;
+//	free(P);
+//	P = NULL;
+//	return true;
+//}
+//bool GetTop(LiStack S, int* x)
+//{
+//	if (S->next == NULL) {
+//		return false;
+//	}
+//	*x = S->next->data;
+//	return true;
+//}
+//int main()
+//{
+//	LiStack S;
+//	return 0;
+//}
